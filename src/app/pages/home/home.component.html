@@ -1,0 +1,27 @@
+<mat-drawer-container>
+    <mat-drawer mode="side" opened>
+        <div class="header-side">
+            <img src="img/white-logo.png" alt="">
+            <h2>PAINEL ADMINISTRATIVO</h2>
+        </div>
+        <div class="ui inverted divider"></div>
+        <div class="menu-items">
+            <div class="menu ">
+                <button class="ui button primary" type="button"  >LISTA DE ESPERA</button>
+            </div>
+            <div class="menu ">
+                <button class="ui button primary" type="button"  >USUÁRIOS</button>
+            </div>
+            <div class="menu ">
+                <button class="ui button primary" type="button"  >NOVO USUÁRIO</button>
+            </div>
+        </div>
+        <div class="ui inverted divider"></div>
+        <div class="logoff">
+            <button class="ui button primary" type="button"  >Sair</button>
+        </div>
+    </mat-drawer>
+    <mat-drawer-content>
+        <router-outlet></router-outlet>
+    </mat-drawer-content>
+  </mat-drawer-container>

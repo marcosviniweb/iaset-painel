@@ -1,0 +1,55 @@
+:host {
+    position: relative;
+    background: url("/img/background.png") no-repeat right;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    .card{
+      width: 100%;
+      max-width: 380px;
+      .cadastro, .reset-password{
+          padding: 05px;
+      }
+      .segment{
+        h2{
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            font-weight: 400;
+            font-style: oblique;
+            color: #0045b7;
+        }
+      }
+    }
+    .logo{
+      position: absolute;
+      flex-shrink: 1;
+      width: 100%;
+      max-width: 500px;
+      top: 40px;
+      padding: 15px;
+    }
+    button{
+      background: #0045b7;
+      color: white;
+    }
+    .loadered{
+      width: 100%;
+      height: 50px;
+    }
+  }
+  
+  .error{
+    color: red;
+    font-size: 12px;
+  }
+  @media only screen and (max-width: 380px) {
+    .logo{
+      top: 0px !important;
+      width: 300px !important;
+    }
+  }

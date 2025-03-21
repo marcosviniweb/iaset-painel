@@ -1,0 +1,51 @@
+:host{
+    width: 100%;
+    mat-drawer-container{
+        
+        width: 100%;
+        height: 100%;
+        mat-drawer {
+            padding: 10px;
+            background: linear-gradient(to bottom, #54bdddd7, #9fc7e9d7, #c7d4f0);
+            .header-side{
+                padding-top: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                img{
+                    width: 100%;
+                    max-width: 300px;
+                }
+                h2{
+                    margin: 5px 0px;
+                    color: #0045B7;
+                    font-style: 16px;
+                }
+            }
+            .menu-items{
+                margin-top: 10px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                height: max-content;
+                .menu{
+                    margin-bottom: 20px;
+                    display: flex;
+                    justify-content: center;
+                    width: 100%;
+                    button{
+                        width: 100%;
+                    }
+                }
+            }
+            .logoff{
+                bottom: 0;
+            }
+        }
+    }
+    mat-drawer-content{
+        padding: 20px;
+        background: white;
+    }
+}
