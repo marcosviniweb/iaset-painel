@@ -13,7 +13,7 @@ import { ApiUrl } from '../../core/env/apiUrl';
 })
 export class UserCardComponent implements OnInit {
   cardData = input<CardData>()
-  cardDataUser:CardData | undefined  
+  cardDataUser!:CardData  
   
   // Usar getter para garantir dados mais atualizados
   get userData() {
@@ -23,10 +23,11 @@ export class UserCardComponent implements OnInit {
   protected apiUrlImg = ApiUrl.urlImg
   
   ngOnInit(): void {
+    console.log(this.cardData())
     this.setCardData()
   }
 
   setCardData(){
-    this.cardDataUser = this.cardData()
+    this.cardDataUser = this.cardData() as CardData
   }
 }
