@@ -1,3 +1,7 @@
 export const ApiUrl = {
-    auth:''
+    users:'https://iaset.com.br/api/users',
+    dependent:'https://iaset.com.br/api/dependents',
+    admin: 'https://iaset.com.br/api/admin',
+    default: 'https://iaset.com.br/api/',
+    urlImg:'http://iaset.com.br/backend-iaset/'
 }

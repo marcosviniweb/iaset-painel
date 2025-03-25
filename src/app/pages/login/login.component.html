@@ -7,13 +7,13 @@
                 <div class="field" [ngClass]="{'error': errorMsg?.input == 'user'}">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="Email ou CPF do titular" formControlName="emailOrCpf">
+                        <input type="text" name="email" placeholder="Email ou CPF do titular" formControlName="email">
                     </div>
                 </div>
                 <div class="field" [ngClass]="{'error': errorMsg?.input == 'pass'}">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Digite sua senha..." formControlName="pass">
+                        <input type="password" name="password" placeholder="Digite sua senha..." formControlName="password">
                     </div>
                     @if (errorMsg) {
                         <span class="error" >{{errorMsg.message}}</span>

@@ -15,15 +15,12 @@ export class UserCardComponent implements OnInit {
   cardData = input<CardData>()
   cardDataUser!:CardData  
   
-  // Usar getter para garantir dados mais atualizados
-  get userData() {
-    return JSON.parse(localStorage.getItem('userData') as string || '{}')
-  }
+  
   
   protected apiUrlImg = ApiUrl.urlImg
   
   ngOnInit(): void {
-    console.log(this.cardData())
+
     this.setCardData()
   }
 

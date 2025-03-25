@@ -14,7 +14,7 @@
         border-radius: 10px 10px 0px 0px;
         bottom: -10px;
         font-weight: 400;
-        font-size: 16px;
+        font-size: 18px;
     }
 }
 
@@ -40,10 +40,7 @@
     display: flex;
     align-items: center;
 }
-label{
-    margin: 0 !important ;
-    margin-right: 10px !important;
-}
+
 @media (max-width: 768px) {
     .title{
         justify-content: center !important;
@@ -57,19 +54,5 @@ label{
             font-weight: 600;
             background: none;
         }
-    }
-}
-::ng-deep{
-    ::-webkit-scrollbar {
-        width: 4px !important; /* Largura da barra de rolagem */
-    }
-    
-    ::-webkit-scrollbar-thumb {
-        background-color: #0045B7  !important; /* Cor da barra de rolagem */
-        border-radius: 10px  !important; /* Bordas arredondadas para a barra de rolagem */
-    }
-    
-    ::-webkit-scrollbar-track {
-        background: transparent  !important; /* Fundo da trilha da barra de rolagem */
     }
 }

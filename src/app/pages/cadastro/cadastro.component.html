@@ -1,1 +1,166 @@
-<p>cadastro works!</p>
+<section>
+    <div class="header">
+        <img src="img/white-logo.png" alt="">
+    </div>
+   
+
+ <form class="ui form" [formGroup]="registerForm" >
+        <div class="container-photo">
+            <label>Foto de Perfil</label>
+            <div class="photo">
+                <input #photo type="file" (change)="imgFile($event)">
+                <img [src]="this.profileImg ? this.profileImg:'img/user-profile.png' " alt="">
+                <div class="select-picture" (click)="photo.click()">
+                    <i class="camera icon"></i>
+                    <mat-icon>touch_app</mat-icon>
+                    <p>Selecione uma Foto</p>
+                </div>
+
+            </div>
+            @if (this.profileImg) {
+            <span>Toque novamente para alterar</span>
+            }
+
+
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Nome:</div>
+                    <input type="text" formControlName="name" placeholder="Nome">
+                </div>
+                @if(registerForm.get('name')?.hasError('required') && registerForm.get('name')?.touched){
+                <span class="error-msg">* Campo Obrigatório *</span>
+                }
+
+            </div>
+
+
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Email:</div>
+                    <input #email type="email" formControlName="email" placeholder="Email">
+                </div>
+                @if (registerForm.get('email')?.hasError('email') && registerForm.get('email')?.dirty) {
+                <span class="error-msg"> Formato de E-mail inválido ! </span>
+                }
+            </div>
+
+
+        </div>
+        <div class="ui inverted divider"></div>
+        <div class="three fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">CPF:</div>
+                    <input type="text" formControlName="cpf" placeholder="CPF" CpfCnpjMask maxlength="14">
+                </div>
+                <span class="error-msg">
+                @if(registerForm.get('cpf')?.hasError('required') && registerForm.get('cpf')?.touched){
+                    * Campo Obrigatório *
+                }
+                @else if(registerForm.get('cpf')?.hasError('minlength') && registerForm.get('cpf')?.dirty){
+                     CPF inválido *
+                }
+                </span>    
+            </div>
+            <div class="five wide  field">
+                <div class="ui labeled input">
+                    <div class="ui label">RG:</div>
+                    <input type="text" formControlName="rg" placeholder="RG" maxlength="10">
+                </div>
+            </div>
+            <div class="eight wide field">
+                <div class="ui labeled input">
+                    <div class="ui label">Data de Nascimento:</div>
+                    <input type="date" placeholder="DD/MM/YYYY" formControlName="birthDay">
+                </div>
+            </div>
+        </div>
+
+        <div class="three fields">
+            <div class="six wide field">
+                <div class="ui labeled input">
+                    <div class="ui label">Matrícula:</div>
+                    <input type="number" formControlName="matricula" placeholder="Matrícula (Opcional)">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Vínculo:</div>
+                    <input type="text" formControlName="vinculo" placeholder="Vínculo">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Lotação:</div>
+                    <input type="text" formControlName="lotacao" placeholder="Lotação">
+                </div>
+            </div>
+        </div>
+
+        <div class="two fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Endereço:</div>
+                    <input type="text" formControlName="endereco" placeholder="Endereço">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Telefone:</div>
+                    <input type="text" formControlName="phone" placeholder="(DDD) 00000-0000" PhoneMask>
+                </div>
+            </div>
+
+        </div>
+        <div class="ui inverted divider"></div>
+        
+
+    
+        <div class="alert">
+            <span>*Verifique se suas informações estão corretas antes de enviar o formulário !*</span>
+        </div>
+        <button class="ui button " type="button" [routerLink]="'/login'">Voltar</button>
+        <button class="ui button primary" type="submit" (click)="submitForm()" [disabled]="registerForm.invalid" >Cadastrar</button>
+    </form>
+  
+    
+</section>
+
+
+<ng-template #dialog>
+    <div>
+        <div class="header">
+            <img src="img/white-logo.png" alt="">
+        </div>
+        <h2  class="dialog-title">
+            Cadastro efetuado com sucesso !
+        </h2>
+    </div>
+
+    <mat-dialog-content>
+       "O usuário foi adicionado à lista de funcionários cadastrados"
+    </mat-dialog-content>
+    <mat-dialog-actions >
+        <button class="ui button primary" type="button" (click)="closeDialog()">OK</button>
+    </mat-dialog-actions>
+</ng-template>
+
+<ng-template #dialogError>
+    <div>
+        <div class="header">
+            <img src="img/white-logo.png" alt="">
+        </div>
+        <h2  class="dialog-title">
+            Ocorreu um erro !
+        </h2>
+    </div>
+
+    <mat-dialog-content>
+        cod:{{statusError}}
+    </mat-dialog-content>
+    <mat-dialog-actions class="">
+        <button class="ui button primary" type="button" (click)="closeDialog()">OK</button>
+    </mat-dialog-actions>
+</ng-template>

@@ -1,5 +1,5 @@
-import { MockService } from './core/services/mock.service';
-import { Component, inject } from '@angular/core';
+
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
@@ -19,10 +19,6 @@ import { RouterOutlet } from '@angular/router';
   ],
 })
 export class AppComponent {
-  constructor(private MockService:MockService){
-    this.MockService.initMock()
-    
-   
-  }
+
   title = 'painel-iaset';
 }

@@ -1,0 +1,58 @@
+<form class="ui form"  >
+    <div class="field">
+     
+      </div>
+      <div class="fields">
+          <div class="field">
+              <div class="ui labeled input">
+                  <div class="ui label">Procurar Usuário:</div>
+                  <input type="text" [formControl]="searchBar" placeholder="CPF ou Nome">
+              </div>
+            </div>
+           
+      </div>
+      
+    </form>
+   <div class="title">
+    @if(userName){
+        <h2>Lista de dependentes de {{userName}}</h2>  
+    } @else {
+        <h2>Lista de dependentes cadastrados</h2>  
+    }
+      
+   </div>
+    <table class="ui inverted blue table">
+      <thead>
+        <tr><th>Nome</th>
+        <th>CPF</th>
+        <th>NOME DO FUNCIONÁRIO VINCULADO</th>
+        <th></th>
+      </tr></thead><tbody>
+        @for (dependent of dependents$ | async  ; track dependent.id ) {
+          <tr>
+            <td>{{dependent.name}}</td>
+            <td>{{dependent.cpf}}</td>
+            <td>{{dependent.name}}</td>
+            <td class="right aligned">
+              <div class="action">
+                
+                <button class="ui icon button"  (click)="openCardView(dependent)"   >
+                    <i class="id card outline icon"></i>
+                    Cartão
+                </button>
+                <button class="ui icon button"  (click)="openDialog(dependent)"   >
+                  <i class="wpforms icon"></i>
+                  Perfil
+                </button>
+              </div>
+            </td>
+           
+          </tr>
+        } @empty {
+          <tr>
+            <td>Nenhum dependente encontrado</td>
+          </tr>
+        }
+       
+      </tbody>
+    </table>

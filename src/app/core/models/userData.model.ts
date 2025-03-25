@@ -1,4 +1,4 @@
-export interface UserData {
+export interface UserData{
     id: number;
     name: string;
     matricula: string;
@@ -8,14 +8,14 @@ export interface UserData {
     lotacao: string;
     endereco: string;
     email: string;
-    phone: string | File;
+    phone: string;
     photo: string;
-    password: string;
+    birthDay: string; // ISO string format
     status: boolean;
-    createdAt: string;
-    updatedAt: string;
-    birthDay:string
-}
+    createdAt: string; // ISO string format
+    updatedAt: string; // ISO string format
+    firstAccess:string;
+  }
 export interface UpdateData {
     name: string;
     matricula: string;

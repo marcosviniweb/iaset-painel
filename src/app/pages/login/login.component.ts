@@ -23,24 +23,24 @@ export class LoginComponent {
   loading = false;
 
   protected authForm = this.fb.group({
-    emailOrCpf: ['', [Validators.required]],
-    pass: ['', [Validators.required]],
+    email: ['', [Validators.required]],
+    password: ['', [Validators.required]],
   });
 
   login() {
     this.loading = true;
     const authData = this.authForm.value as { email: string; password: string };
-
+    console.log(authData)
     this.authService
-      // .auth(authData)
-      // .then(() => {
-      //   this.loading = false;
-      // })
-      // .catch((error: HttpErrorResponse) => {
-      //   this.showError(error.error.message);
-      //   this.loading = false;
-      //   throw error;
-      // });
+      .auth(authData)
+      .then(() => {
+        this.loading = false;
+      })
+      .catch((error: HttpErrorResponse) => {
+        this.showError(error.error.message);
+        this.loading = false;
+        throw error;
+      });
   }
 
   showError(errorMsg: string) {

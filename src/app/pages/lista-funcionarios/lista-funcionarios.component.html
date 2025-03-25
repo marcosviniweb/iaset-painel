@@ -1,0 +1,53 @@
+<form class="ui form"  >
+  <div class="field">
+   
+    </div>
+    <div class="fields">
+        <div class="field">
+            <div class="ui labeled input">
+                <div class="ui label">Procurar Usuário:</div>
+                <input type="text" [formControl]="searchBar" placeholder="CPF ou Nome">
+            </div>
+          </div>
+         
+    </div>
+    
+  </form>
+ <div class="title">
+    <h2>Lista de funcionários cadastrados</h2>  
+ </div>
+  <table class="ui inverted blue table">
+    <thead>
+      <tr><th>Nome</th>
+      <th>CPF</th>
+      <th>Matricula</th>
+      <th></th>
+    </tr></thead><tbody>
+      @for (user of users$ | async  ; track user.id ) {
+        <tr>
+          <td>{{user.name}}</td>
+          <td>{{user.cpf}}</td>
+          <td>{{user.matricula}}</td>
+          <td class="right aligned">
+            <div class="action">
+              
+              <button class="ui icon button"  (click)="openCardView(user)">
+                  <i class="id card outline icon"></i>
+                  Cartão
+              </button>
+              <button class="ui icon button"  (click)="openDialog(user)"  routerLinkActive="router-link-active"  >
+                <i class="wpforms icon"></i>
+                Perfil
+              </button>
+            </div>
+          </td>
+         
+        </tr>
+      }@empty {
+        <tr>
+          <td>Nenhum funcionário encontrado</td>
+        </tr>
+      }
+     
+    </tbody>
+  </table>

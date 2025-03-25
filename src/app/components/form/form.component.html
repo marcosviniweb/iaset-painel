@@ -1,0 +1,144 @@
+<section>
+    <div class="close" >
+       
+        <i class="close icon" (click)="closeDialog()"></i>
+          
+    </div>
+    <div class="ui horizontal divider">
+        <div class="header">
+            <i class="id card outline icon"></i>
+            
+            <h2>Dados do Usuário</h2>
+        </div>
+    </div>
+    <div class="ui inverted divider"></div>
+    <form class="ui form" [formGroup]="updateForm" >
+        <div class="container-photo">
+            <label >Foto de Perfil</label>
+            <div class="photo">
+                <input #photo type="file" (change)="imgFile($event)" >
+                <img [src]="profileImg ?  profileImg:'img/user-profile.png' " alt="">
+                <div class="select-picture" (click)="photo.click()">
+                    <i class="camera icon"></i>
+                    <p >Selecione uma Foto</p>
+                </div>
+            </div>
+            
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Nome:</div>
+                    <input type="text" formControlName="name" placeholder="Nome" >
+                </div>
+               
+               
+            </div>
+           
+            
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Email:</div>
+                    <input #email type="email" formControlName="email" placeholder="Email">
+                </div>
+               
+            </div>
+           
+           
+        </div>
+        <div class="ui inverted divider"></div>
+        <div class="three fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">CPF:</div>
+                    <input type="text" formControlName="cpf" placeholder="CPF" CpfCnpjMask maxlength="14" >
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">RG:</div>
+                    <input type="text" formControlName="rg" placeholder="RG" maxlength="10">
+                </div>
+            </div>
+            <div class="eight wide field">
+                <div class="ui labeled input">
+                    <div class="ui label">Data de Nascimento:</div>
+                    <input type="date" placeholder="DD/MM/YYYY" formControlName="birthDay">
+                </div>
+            </div>
+        </div>
+    
+        <div class="three fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Vínculo:</div>
+                    <input type="text" formControlName="vinculo" placeholder="Vínculo">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Lotação:</div>
+                    <input type="text" formControlName="lotacao" placeholder="Lotação">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Matrícula:</div>
+                    <input type="text" formControlName="matricula" placeholder="Matrícula">
+                </div>
+            </div>  
+        </div>
+    
+        <div class="two fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Endereço:</div>
+                    <input type="text" formControlName="endereco" placeholder="Endereço">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Telefone:</div>
+                    <input type="text" formControlName="phone" placeholder="(DDD) 00000-0000" PhoneMask >
+                </div>
+            </div>
+           
+        </div>
+       
+        @if (updateMessage.status !== '') {
+            <span class="update-message" [ngClass]="updateMessage.status">
+                {{updateMessage.message}}
+                <button class="ui mini icon button" *ngIf="updateMessage.status === 'error'" (click)="updateMessage = {status:'', message:''}">
+                    <i class="close icon"></i>
+                </button>
+            </span>
+        }
+   
+     
+    <div class="container-button" #templete>
+        @if (formType == 'waitingList') {
+            <button class="ui button green" type="submit" (click)="approveUser()" >Aprovar</button>
+        <button class="ui button red" type="submit" (click)="recuseUser()" >Recusar</button>
+        <button class="ui button" type="submit" (click)="closeDialog()" >Sair</button>
+        } @else {
+            <button class="ui button primary" type="submit" 
+            [routerLink]="['/dependente', userData.id]" routerLinkActive="router-link-active" (click)="closeDialog()"  >
+            Cadastrar um dependente</button>
+            <button class="ui right labeled icon button primary" 
+            [routerLink]="['/dependentes']" [queryParams]="{userName:userData.name, id:userData.id}"  (click)="closeDialog()" >
+                <i class="list alternate icon"></i>
+                Lista de dependentes
+             </button>
+        <button class="ui button" type="submit" (click)="editUserProfile()" >Atualizar</button>
+        <button class="ui button red" type="submit" (click)="recuseUser()" >Deletar</button>
+        <button class="ui button" type="submit" (click)="closeDialog()" >Sair</button>
+         
+        }
+        
+        
+        
+    </div>
+       
+        
+    </form>
+</section>

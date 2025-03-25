@@ -1,0 +1,167 @@
+<section>
+
+    <div class="ui horizontal divider">
+        <div class="header">
+            <i class="id card outline icon"></i>
+
+            <h2>Cadastro de Dependente</h2>
+        </div>
+    </div>
+    <div class="ui inverted divider"></div>
+    <form class="ui form" [formGroup]="dependentForm">
+
+        <div class="ui inverted divider"></div>
+        <div class="two fields">
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">Nome:</div>
+                    <input type="text" formControlName="name" placeholder="Nome"
+                        [readonly]="formType === 'waitingList'? true:false">
+                </div>
+                @if(dependentForm.get('name')?.hasError('required') && dependentForm.get('name')?.touched){
+                <span class="error-msg"> * Campo Obrigatório *</span>
+                }
+            </div>
+            <div class="field">
+                <div class="ui labeled input">
+                    <div class="ui label">CPF:</div>
+                    <input [readonly]="formType === 'waitingList'? true:false" type="text" formControlName="cpf"
+                        placeholder="CPF" CpfCnpjMask maxlength="14">
+                </div>
+                @if(dependentForm.get('cpf')?.hasError('required') && dependentForm.get('cpf')?.touched){
+                <span class="error-msg"> * Campo Obrigatório *</span>
+                }
+            </div>
+
+        </div>
+        <div class="two fields">
+            <div class="eight wide field">
+                <div class="ui labeled input">
+                    <div class="ui label">Data de Nascimento:</div>
+                    <input type="date" [readonly]="formType === 'waitingList'? true:false" placeholder="DD/MM/YYYY"
+                        formControlName="birthDate">
+                </div>
+                @if(dependentForm.get('birthDate')?.hasError('required') && dependentForm.get('birthDate')?.touched){
+                <span class="error-msg"> * Campo Obrigatório *</span>
+                }
+            </div>
+
+
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Documentos de certificação:</label>
+                <div class="content">
+                    <div class="ui form">
+                        <div class="grouped fields">
+                            <label>Relação:</label>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="relationship" value="conjuge"
+                                        formControlName="relationship">
+                                    <label>Cônjuge
+                                        @if(warnMsg.status && dependentForm.get('relationship')?.value == 'filho'){
+                                        <br><b>{{warnMsg.msg }}</b>
+                                        }
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <div class="ui radio checkbox">
+                                    <input type="radio" name="relationship" value="filho"
+                                        formControlName="relationship">
+                                    <label>Filho</label>
+                                </div>
+                            </div>
+                        </div>
+                        @if(dependentForm.get('relationship')?.hasError('required') &&
+                        dependentForm.get('relationship')?.touched){
+                        <span class="error-msg"> * Campo Obrigatório *</span>
+                        }
+                    </div>
+                    <div class="ui form">
+
+                        <div class="grouped fields">
+                            @if(dependentForm.get('relationship')?.value === 'filho'){
+                            <label>Deficiência:</label>
+                            <div class="field">
+                                <div class="ui checkbox">
+                                    <input type="checkbox" formControlName="hasDisability">
+                                    <label>Possui deficiência</label>
+                                </div>
+                            </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui labeled input file">
+                    <div class="container-file">
+                        <label>* Documento de certificação *</label>
+                    </div>
+                    <div class="container-content">
+                        <p></p>
+                        <input #file type="file" (change)="onFileSelected($event)">
+                        @if(dependentForm.get('relationship')?.value){
+                        <h4>*Documentos necessários*</h4>
+                        }
+
+                        @if(dependentForm.get('relationship')?.value == 'conjuge' && fileName === ''){
+                        <ul>
+                            <li>Certidão de casamento ou união:</li>
+                        </ul>
+                        }@else if(dependentForm.get('relationship')?.value == 'filho' && fileName === '') {
+                        <ul>
+                            <li>Certidão de nascimento:</li>
+                            <li>Documento de adoção:</li>
+                            <li>Comprovante de matrícula ou faculdade:</li>
+                            @if(this.dependentForm.get('hasDisability')?.value){
+                            <li>Laudo médico de deficiência:</li>
+                            }
+
+                        </ul>
+                        }
+                        @if(dependentForm.get('file')?.value){
+
+                        <span>{{ fileName}}</span>
+                        }
+                        <button class="ui button primary" (click)="file.click()">Selecione o Documento</button>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        @if (updateMessage.status !== '') {
+        <span class="update-message" [ngClass]="updateMessage.status">
+            {{updateMessage.message}}
+
+        </span>
+        }
+
+
+        <div class="container-button" #templete>
+            @if(formType === 'waitingList'){
+            <button class="ui button green" type="button" (click)="approveDependent()">Aprovar</button>
+            <button class="ui button red" type="button" (click)="deleteDependent()">
+                Recusar</button>
+            <button class="ui button" type="button" (click)="closeDialog()">Sair</button>
+            }@else {
+            <button class="ui button" type="button" (click)="updateDependent()" >Editar
+            </button>
+            <button class="ui button red" type="button" (click)="deleteDependent()">
+                Apagar</button>
+            <button class="ui button" type="button" (click)="closeDialog()">Sair</button>
+            }
+
+        </div>
+
+
+    </form>
+
+
+</section>
+
+
