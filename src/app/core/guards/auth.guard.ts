@@ -7,11 +7,11 @@ export const authGuard: CanActivateFn = (route, state) => {
 
   // Verifica se a rota atual é a página de login
   const isLoginPage = state.url === '/login';
-  const isRegisterPage = state.url === '/cadastro'
+
   // Se não existir token
   if (!token) {
     // Se não estiver na página de login ou cadastro, redireciona para login
-    if (!isLoginPage && !isRegisterPage) {
+    if (!isLoginPage ) {
       router.navigate(['/login']);
       return false;
     }
@@ -20,7 +20,7 @@ export const authGuard: CanActivateFn = (route, state) => {
   } else {
     // Se existir token e estiver tentando acessar a página de login
     // redireciona para a home
-    if (isLoginPage || isRegisterPage) {
+    if (isLoginPage) {
       router.navigate(['/']);
       return false;
     }

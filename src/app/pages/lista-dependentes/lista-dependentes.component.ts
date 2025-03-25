@@ -70,7 +70,8 @@ export class ListaDependentesComponent {
     })
       .closed
       .subscribe((result) => {
-        this.serviceData.getDependents()
+        console.log(result)
+        this.dependents$ = this.serviceData.getDependents(true)
       });
   }
 

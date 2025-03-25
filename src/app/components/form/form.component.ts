@@ -8,11 +8,12 @@ import { DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { HttpErrorResponse } from '@angular/common/http';
 import { CpfCnpjMaskDirective } from '../../shared/directives/cpfMask.directive';
 import { RouterModule } from '@angular/router';
+import { PhoneMaskDirective } from '../../shared/directives/phoneMask.directive';
 
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, CommonModule, CpfCnpjMaskDirective, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, CpfCnpjMaskDirective, RouterModule, PhoneMaskDirective],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
@@ -121,9 +122,8 @@ export class FormComponent implements OnInit {
 
 
   editUserProfile(){
-    
-    
-    const formData = new FormData();
+    if (confirm('Deseja alterar os dados do usuário ?')) {
+      const formData = new FormData();
     Object.keys(this.updateForm.controls).forEach(key => {
       key !== 'confirmPassowrd' ?
         formData.append(key, this.updateForm.get(key)?.value) : null
@@ -135,7 +135,7 @@ export class FormComponent implements OnInit {
     .subscribe({
       next:(response)=> {
    
- 
+        this.dialogRef.close('sucess')
         this.updateMessage = {status:'sucess', message:'Informações atualizadas com sucesso !'}
       },
       error:(error:HttpErrorResponse)=>{
@@ -147,6 +147,9 @@ export class FormComponent implements OnInit {
           console.error('Erro ao atualizar perfil:', error)
       }
     })
+    }
+    
+    
   }
   
   closeDialog(){

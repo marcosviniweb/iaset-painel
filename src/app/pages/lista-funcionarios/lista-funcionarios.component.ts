@@ -56,7 +56,7 @@ export class ListaFuncionariosComponent implements OnInit {
     .closed
     .subscribe((result)=> {
       if(result === 'deleted'){
-        this.users$ = this.serviceData.getAllUser('newRequest')
+        this.users$ = this.serviceData.getAllUser(true)
       }
     });
   }

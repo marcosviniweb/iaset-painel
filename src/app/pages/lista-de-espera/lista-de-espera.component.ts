@@ -65,7 +65,9 @@ export class ListaDeEsperaComponent implements OnInit {
        panelClass: 'responsive-dialog',
        maxWidth:'1000px'
       
-    }).closed.subscribe((result)=> console.log(result));
+    }).closed.subscribe((result)=>{
+      this.list$ = this.serviceData.getWaitingList(this.listType.value, true)
+    } );
   }
   openDialogDependent(userData:UserData) {
   
@@ -77,7 +79,7 @@ export class ListaDeEsperaComponent implements OnInit {
       
     }).closed.subscribe((response)=>{
       if(response === 'sucess'){
-       this.list$ = this.serviceData.getWaitingList(this.listType.value, 'newRequest')
+       this.list$ = this.serviceData.getWaitingList(this.listType.value, true)
       }
     });
   }

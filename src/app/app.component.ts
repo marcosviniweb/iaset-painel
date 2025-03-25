@@ -20,5 +20,5 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
 
-  title = 'painel-iaset';
+  title = 'Painel-Administrativo';
 }

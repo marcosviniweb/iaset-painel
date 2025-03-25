@@ -29,6 +29,7 @@ export class CadastroDependenteComponent implements OnInit {
     relationship: [''],
     file: new FormControl<File | null>(null),
     hasDisability: [false],
+    status:true
   });
 
   userFormData = {name:'', matricula:''}
@@ -104,7 +105,7 @@ export class CadastroDependenteComponent implements OnInit {
 
     this.serviceData.setDependent(this.userData.id, formData).subscribe({
       next: (response) => {
-        console.log(response)
+        this.dependentForm.reset()
         this.updateMessage = {
           status: 'sucess',
           message: 'Dependente cadastrado com sucesso !',

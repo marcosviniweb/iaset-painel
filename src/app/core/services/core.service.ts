@@ -27,7 +27,7 @@ export class CoreService {
     return this.http.post(this.apiUrl.users+`/${userId}/dependents`, body);
   }
 
-  getWaitingList(type: 'waitingList' | 'userList', newRequest?: 'newRequest') {
+  getWaitingList(type: 'waitingList' | 'userList', newRequest?: boolean) {
     if (!this.user$ || newRequest) {
       if (type === 'userList') {
         return (this.awaitList$ = this.http
@@ -41,7 +41,7 @@ export class CoreService {
     return this.awaitList$;
   }
 
-  getAllUser(newRequest?:string) {
+  getAllUser(newRequest?:boolean) {
     if (!this.user$ || newRequest) {
       return this.http
         .get<UserData[]>(this.apiUrl.users + `?status=true`)
@@ -50,8 +50,9 @@ export class CoreService {
     return this.user$;
   }
 
-  getDependents() {
-    if (!this.dependent$) {
+  getDependents(newRequest?:boolean) {
+    if (!this.dependent$ || newRequest) {
+      console.log('newRequest')
       return this.http
         .get<Dependent[]>(this.apiUrl.dependent + `?status=true`)
         .pipe(shareReplay(1));
