@@ -101,7 +101,8 @@ export class FormComponent implements OnInit {
 
   formatDataDialog(userData: any) {
     console.log(userData)
-    this.profileImg =  'http://iaset.com.br/backend-iaset' + userData.photo
+    
+    this.profileImg = userData.photo? 'http://iaset.com.br/backend-iaset' + userData.photo: undefined
     userData.birthDay = this.formatarData(userData.birthDay);
     this.updateForm.patchValue(userData);
   }
@@ -136,6 +137,7 @@ export class FormComponent implements OnInit {
       next:(response)=> {
    
         this.dialogRef.close('sucess')
+        alert('Informações atualizadas com sucesso !')
         this.updateMessage = {status:'sucess', message:'Informações atualizadas com sucesso !'}
       },
       error:(error:HttpErrorResponse)=>{

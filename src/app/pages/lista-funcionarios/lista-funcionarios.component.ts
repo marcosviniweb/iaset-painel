@@ -55,11 +55,13 @@ export class ListaFuncionariosComponent implements OnInit {
     })
     .closed
     .subscribe((result)=> {
-      if(result === 'deleted'){
+      if(result === 'deleted' || result === 'sucess'){
         this.users$ = this.serviceData.getAllUser(true)
+        console.log(result)
       }
     });
   }
+
   openCardView(userData:UserData) {
     
     this.dialog.open(CardViewComponent, {

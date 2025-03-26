@@ -18,12 +18,10 @@ export class CoreService {
 
   
   setUser(body: FormData) {
-    console.log(body);
     return this.http.post(this.apiUrl.users, body);
   }
 
   setDependent(userId:number,body: FormData) {
-    console.log(body);
     return this.http.post(this.apiUrl.users+`/${userId}/dependents`, body);
   }
 
@@ -52,7 +50,6 @@ export class CoreService {
 
   getDependents(newRequest?:boolean) {
     if (!this.dependent$ || newRequest) {
-      console.log('newRequest')
       return this.http
         .get<Dependent[]>(this.apiUrl.dependent + `?status=true`)
         .pipe(shareReplay(1));
@@ -63,7 +60,7 @@ export class CoreService {
   getUserDependents(userId:number, newRequest?:'newRequest'){
     if(!this.dependent$ || newRequest){
       this.dependent$ = this.http.get<Dependent[]>(this.apiUrl.users+`/${userId}/dependents`)
-      .pipe(shareReplay())
+      .pipe(shareReplay(1))
     }
     return this.dependent$
   }
@@ -79,7 +76,7 @@ export class CoreService {
   }
 
   updateDependent(userId:number, depId:number, body:any){
-    return this.http.put(this.apiUrl.users+`/${userId}/dependents/${depId}`, body)
+    return this.http.put(this.apiUrl.dependent+`/${depId}`, body)
   }
 
   deleteUsers(userId: number) {

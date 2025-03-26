@@ -5,7 +5,7 @@ import { UserCardComponent } from '../../components/user-card/user-card.componen
 import { CoreService } from '../../core/services/core.service';
 import { BehaviorSubject, Observable, Subject, takeUntil } from 'rxjs';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { Dialog, DIALOG_DATA } from '@angular/cdk/dialog';
+import { Dialog, DIALOG_DATA, DialogRef } from '@angular/cdk/dialog';
 import { Dependent } from '../../core/models/dependents.model';
 
 @Component({
@@ -17,9 +17,9 @@ import { Dependent } from '../../core/models/dependents.model';
 })
 export class CardViewComponent implements OnInit, OnDestroy {
 
-  private serviceData = inject(CoreService)
+  // private serviceData = inject(CoreService)
   private dialogData = inject(DIALOG_DATA)
-
+  private dialogRef = inject(DialogRef)
   userCards: any[] = [];
 
   carouselDirection: 'horizontal' | 'vertical' = 'horizontal';
@@ -72,7 +72,9 @@ export class CardViewComponent implements OnInit, OnDestroy {
   isVertical(): boolean {
     return this.carouselDirection === 'vertical';
   }
-
+  closeDialog(){
+    this.dialogRef.close()
+  }
   
   checkUserData(userDataValue:UserData) {
     const userData = userDataValue;

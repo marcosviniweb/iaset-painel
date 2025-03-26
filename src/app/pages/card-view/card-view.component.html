@@ -60,9 +60,9 @@
 } @else {
   <div class="warning-card">
       <i class="lock icon"></i>
-      <h2>Complete suas informações de cadastro para ter acesso ao cartão</h2>
+      <h2>Complete as informações de cadastro para ter acesso ao cartão</h2>
       <div class="container-button">
-        <button class="ui button primary" [routerLink]="['/perfil']"  >Terminar cadastro</button>
+        <button class="ui button primary" (click)="closeDialog()"  >Ok</button>
       </div>
   </div>
 }

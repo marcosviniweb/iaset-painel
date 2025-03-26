@@ -44,7 +44,7 @@ export class FormDependentComponent {
   formType: 'dependent' | 'waitingList' = 'waitingList';
   depId!: number;
   userData = {};
-  docUrl = ApiUrl.urlImg;
+  docUrl = ApiUrl.urlFile;
   ngOnInit(): void {
     console.log(this.dialogData);
     this.setDendentData(this.dialogData);

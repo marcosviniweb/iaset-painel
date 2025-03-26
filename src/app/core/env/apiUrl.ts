@@ -3,5 +3,5 @@ export const ApiUrl = {
     dependent:'https://iaset.com.br/api/dependents',
     admin: 'https://iaset.com.br/api/admin',
     default: 'https://iaset.com.br/api/',
-    urlImg:'http://iaset.com.br/backend-iaset/'
+    urlFile:'http://iaset.com.br/backend-iaset/'
 }

@@ -17,7 +17,7 @@ export class UserCardComponent implements OnInit {
   
   
   
-  protected apiUrlImg = ApiUrl.urlImg
+  protected apiUrlImg = ApiUrl.urlFile
   
   ngOnInit(): void {
 

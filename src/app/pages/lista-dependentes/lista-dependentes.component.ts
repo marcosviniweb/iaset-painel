@@ -27,13 +27,15 @@ export class ListaDependentesComponent {
   ngOnInit(): void {
     this.route.queryParams
     .subscribe((param)=>{
+      console.log(param)
       if(param['id']){
         const id  = param['id']
         this.userName = param['userName']
-        this.getUserDependents(id)    
+       this.getUserDependents(id)
       }else{
-        this.dependents$ = this.serviceData.getDependents()
-        
+        console.log('query')
+        this.dependents$ = this.serviceData.getDependents(true)
+        this.userName = ''
       }
     })
     
@@ -58,7 +60,7 @@ export class ListaDependentesComponent {
       );
   }
   getUserDependents(userId:number){
-    this.dependents$ = this.serviceData.getUserDependents(userId)
+    this.dependents$ = this.serviceData.getUserDependents(userId).pipe(tap(value=> console.log(value)))
   }
   openDialog(dependentData: Dependent) {
 
