@@ -6,6 +6,6 @@ export interface CardData {
     createdAt:string,
     photo?:string
     birthDate?:string,
-    user:{name:string, id:number}
+    user:{name:string, id:number, matricula:string}
     userId:number
 }

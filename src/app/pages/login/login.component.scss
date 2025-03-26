@@ -1,55 +1,90 @@
 :host {
-    position: relative;
-    background: url("/img/background.png") no-repeat right;
-    background-size: cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: relative;
+  background: url("/img/background.png") no-repeat right;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  height: 100%;
+  padding: 15px;
+  padding-top: 50px;
+
+  .card {
+    align-self: center;
     width: 100%;
-    height: 100%;
+    max-width: 380px;
+
+    .cadastro,
+    .reset-password {
+      padding: 05px;
+    }
+
+    .segment {
+      h2 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+        font-style: oblique;
+        color: #1c71b1;
+      }
+    }
+  }
+
+  .logo {
+    position: relative;
+    flex-shrink: 1;
+    width: 100%;
+    max-width: 500px;
+    top: 10px;
     padding: 15px;
-    .card{
-      width: 100%;
-      max-width: 380px;
-      .cadastro, .reset-password{
-          padding: 05px;
-      }
-      .segment{
-        h2{
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            font-weight: 400;
-            font-style: oblique;
-            color: #1C71B1;
-        }
-      }
-    }
-    .logo{
-      position: absolute;
-      flex-shrink: 1;
-      width: 100%;
-      max-width: 500px;
-      top: 40px;
-      padding: 15px;
-    }
-    button{
-      background: #1C71B1;
-      color: white;
-    }
-    .loadered{
-      width: 100%;
-      height: 50px;
-    }
   }
-  
-  .error{
-    color: red;
-    font-size: 12px;
+
+  button {
+    background: #0045b7;
+    color: white;
   }
-  @media only screen and (max-width: 380px) {
-    .logo{
-      top: 0px !important;
-      width: 300px !important;
-    }
+
+  .loadered {
+    width: 100%;
+    height: 50px;
   }
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 380px) {
+  .logo {
+    top: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 380px) {
+  .logo {
+    top: 0px !important;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  .logo {
+    max-width: 400px !important;
+  }
+}
+
+@media only screen and (max-height: 560px) {
+  :host {
+    flex-flow: row;
+    align-items: flex-start !important;
+    padding-top: 20px;
+  }
+
+  .logo {
+    align-items: flex-start;
+    mix-blend-mode: multiply;
+  }
+}
