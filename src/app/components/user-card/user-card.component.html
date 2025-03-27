@@ -17,8 +17,14 @@
         </div>
     </div>
     <div class="card-body">
+       
         <div class="code-photo">
-            @if(cardDataUser.user.matricula){
+            @if(cardDataUser.matricula){
+                <div class="registration-code" >
+                    <h2>{{cardDataUser.matricula}}</h2>
+                    <p>Nª DA MATRÍCULA</p>
+                </div>
+            } @else {
                 <div class="registration-code" >
                     <h2>{{cardDataUser.user.matricula}}</h2>
                     <p>Nª DA MATRÍCULA</p>

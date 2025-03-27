@@ -41,6 +41,7 @@ export class FormComponent implements OnInit {
   userData!:UserData
   profileImg: string | undefined; // Variável para armazenar a URL da imagem
   ngOnInit(): void {
+    console.log(this.dialogData)
     this.formType = this.dialogData.formType
     this.formatDataDialog(this.dialogData.user)
     this.userData = this.dialogData.user
